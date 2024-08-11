@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff; /* White background for the container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control,
+.form-select {
+    border-radius: 4px;
+    border: 1px solid #000; /* Default border color set to black */
+    transition: border-color 0.2s ease;
+    margin-bottom: 10px; /* Space between rows */
+    background-color: #e0f7fa; /* Light sky blue interior color for form fields */
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-select.is-invalid {
+    border-color: #dc3545;
+}
+
+.valid-feedback,
+.invalid-feedback {
+    display: none; /* Hide feedback by default */
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.valid-feedback {
+    color: #28a745;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+}
+
+.form-control:invalid,
+.form-select:invalid {
+    border-color: #dc3545; /* Show red border for invalid inputs */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.was-validated .invalid-feedback {
+    display: block; /* Show feedback after validation */
+}
