@@ -4,7 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Form</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 4px;
+            border: 1px solid #000;
+            transition: border-color 0.2s ease;
+            margin-bottom: 10px;
+            background-color: #e0f7fa;
+        }
+
+        .form-control.is-valid {
+            border-color: #28a745;
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+
+        .form-select.is-invalid {
+            border-color: #dc3545;
+        }
+
+        .valid-feedback,
+        .invalid-feedback {
+            display: none;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .valid-feedback {
+            color: #28a745;
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+        }
+
+        .form-control:invalid,
+        .form-select:invalid {
+            border-color: #dc3545;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .was-validated .invalid-feedback {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -43,7 +127,6 @@
                     <label for="state" class="form-label">State</label>
                     <select class="form-select" id="state" required>
                         <option value="" disabled selected>Choose...</option>
-                        <!-- Add all 28 states here -->
                         <option>Andhra Pradesh</option>
                         <option>Arunachal Pradesh</option>
                         <option>Assam</option>
@@ -154,6 +237,46 @@
             </div>
         </form>
     </div>
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("profileForm");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const requiredElements = form.querySelectorAll("[required]");
+
+                let isValid = true;
+
+                requiredElements.forEach(function (element) {
+                    const parentDiv = element.closest('.col-md-6') || element.closest('.col-12');
+                    let errorDiv = parentDiv.querySelector('.custom-error');
+                    
+                    if (errorDiv) {
+                        errorDiv.remove();
+                    }
+
+                    if (!element.value) {
+                        isValid = false;
+                        errorDiv = document.createElement('div');
+                        errorDiv.className = 'custom-error';
+                        errorDiv.style.color = 'red';
+                        errorDiv.style.marginTop = '5px';
+                        errorDiv.textContent = "Please fill out this field.";
+
+                        parentDiv.appendChild(errorDiv);
+                        element.classList.add("is-invalid");
+                    } else {
+                        element.classList.remove("is-invalid");
+                    }
+                });
+
+                if (isValid) {
+                    alert("Form submitted successfully!");
+                    // form.submit(); // Uncomment this line to submit the form
+                }
+            });
+        });
+    </script>
 </body>
 </html>
